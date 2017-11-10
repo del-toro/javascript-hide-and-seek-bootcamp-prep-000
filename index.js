@@ -5,21 +5,30 @@ function getFirstSelector(selector){
 }
 
 function nestedTarget(){
-  var collection = document.querySelectorAll('#nested');
-  for (i = 0; i < collection; i++){
-    if(collection[i].className == 'target'){
-      return collection[i];
-    }
-  } //return document.querySelector('div.nested div div div div.target');
+  return document.querySelector('#nested .target');
 }
+
+
 
 function deepestChild(){
-
+ var parent = document.querySelector('#grand-node');
+ let child = parent.children[0];
+ while (child){
+   parent = child;
+   child = parent.children[0];
+ }
+ return parent;
 }
+
 
 function increaseRankBy(n) {
+  const rankedLists = document.querySelectorAll('.ranked-list')
 
+  for (let i = 0, l = rankedLists.length; i < l; i++) {
+    let children = rankedLists[i].children
+
+    for (let j = 0, k = children.length; j < k; j++) {
+      children[j].innerHTML = parseInt(children[j].innerHTML) + n
+    }
+  }
 }
-
-// var check = nestedTarget();
-// console.log(check);
